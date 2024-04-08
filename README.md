@@ -231,6 +231,7 @@ Now as an Admin let's create various folders, users, etc and understand how Acti
 - Folder: “write-access”,  Group: “Domain Users”, Permissions: “Read/Write”
 - Folder: “no-access”, Group: “Domain Admins”, “Permissions: “Read/Write”
 - On VM-DC-1 AD Users & Computers right click "yourdomain.com" create a security group named "Accounting" (we'll add a user to this group later)
+- Go back to "Accounting Dept" folder and share the folder with the "Accounting" group, give the group read & write permissions
 
 
 ![Screen Shot 2024-04-07 at 1 03 46 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/92bacacd-f11b-4901-b71c-d35dd594aecd)
@@ -245,54 +246,97 @@ Now as an Admin let's create various folders, users, etc and understand how Acti
 
 <p>
 Now let's create a bunch of fake additional users and add them to the "Employees" folder utilizing a code which generates random names that we can run on VM-DC-1 Powershell
+Username is the account name and password for all users is "Password1"
 </p>
 
-- 
+- Go to my GitHub and copy the raw contents of the code (https://github.com/EricAlexanderZ/Random-name-generator/tree/main)
+- On VM-DC-1 open Start menu, right click ISE Powershell and click run as an administrator
+- Click on the file icon on the top left corner, paste the code into the file and press the green play icon to run the script
+- Watch as the script starts generating random users
+- Open Active Directory Users and Computers and see the different users that have been created (yours will be different)
+- On the Accounting security group that we created earlier, let's add a random user to it (I added civ.geta to Accounting group)
 
+
+
+
+![Screen Shot 2024-04-08 at 10 04 26 AM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/da6a8afa-ef25-4c4c-a475-061089d734f2)
+
+<br />
 
 ![Screen Shot 2024-04-07 at 12 04 30 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/de1ad448-a4b2-4a82-9dda-4e6c3243e9d6)
+
+<br />
+
 ![Screen Shot 2024-04-07 at 12 07 15 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/24286be6-14d8-4872-88cc-034704a095c1)
+
+<br />
+
 ![Screen Shot 2024-04-07 at 12 09 37 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/94e2597a-a583-40f8-88c7-30ae9756da4f)
-![Screen Shot 2024-04-07 at 12 11 28 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/ea668f32-9fa9-4ffd-b3be-6c3fde5e832f)
-![Screen Shot 2024-04-07 at 1 19 41 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/ff7deb28-d176-49b5-bb99-6cf26d9ef942)
+
+<br />
+
 ![Screen Shot 2024-04-07 at 1 21 17 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/ffe564c2-a2c4-437a-b488-b24477b5667a)
 
+<br />
+
+![Screen Shot 2024-04-07 at 12 11 28 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/ea668f32-9fa9-4ffd-b3be-6c3fde5e832f)
+
+<br />
+
+![Screen Shot 2024-04-07 at 1 19 41 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/ff7deb28-d176-49b5-bb99-6cf26d9ef942)
+
+<br />
 
 
 
+<p>
+Next, login to Client-1 using your random user account. Remember you'll have to add "yourdomain.com\RandomUsername"  and password for all users is "Password1"
+</p>
 
-
-
-
-
-
-
-
-
-
-
+- I logged into Client-1 with civ.geta
+- Inspect the "Accounting Dept" folder you should be able to open it and make changes
+- 
 
 ![Screen Shot 2024-04-07 at 12 11 55 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/b0990480-b48d-4b3c-9974-bfc50c240354)
 ![Screen Shot 2024-04-07 at 12 12 07 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/df34693b-e1b9-4e80-8ca0-c6f3e21b9a54)
 ![Screen Shot 2024-04-07 at 1 25 20 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/9aa20361-3bfe-489c-84ab-f5c25ed3d97f)
 
+<br />
 
+
+<p>
+Trying a different user with "Domain User" permissions only, moving on to bum.risa 😮‍💨  
+</p>
+
+- Logoff your Client-1 user
+- On VM-DC-1 in the Active Directory Users and Computers, under the "Employees" folder, select a different random user
+- Login to Client-1 "yourdomain.com" | "Password1"
+- This user only has "Domain User" permissions so you should not be able to open the "Accounting Dept" folder
+- Test it out 
+
+
+![Screen Shot 2024-04-07 at 1 27 07 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/3bae9bfd-0709-4edf-8de7-337ae1dddeb2)
+
+<br />
+
+![Screen Shot 2024-04-07 at 1 28 29 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/30003a5a-fbe2-4591-a3bc-06aa0a8a558e)
+
+<br />
+
+![Screen Shot 2024-04-07 at 1 28 56 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/5bb843f6-84c9-4ab4-832c-3603c1a00f94)
+
+<br />
+
+![Screen Shot 2024-04-07 at 1 30 01 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/131881db-a882-4d58-a386-23b6a9dc960e)
 
 <br />
 
 
 <p>
-Moving on to bum.risa 😮‍💨  
+This concludes the Active Directory Project!  
 </p>
 
-- 
 
-
-
-![Screen Shot 2024-04-07 at 1 27 07 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/3bae9bfd-0709-4edf-8de7-337ae1dddeb2)
-![Screen Shot 2024-04-07 at 1 28 29 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/30003a5a-fbe2-4591-a3bc-06aa0a8a558e)
-![Screen Shot 2024-04-07 at 1 28 56 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/5bb843f6-84c9-4ab4-832c-3603c1a00f94)
-![Screen Shot 2024-04-07 at 1 30 01 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/131881db-a882-4d58-a386-23b6a9dc960e)
 
 
 
