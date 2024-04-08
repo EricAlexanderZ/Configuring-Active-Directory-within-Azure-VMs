@@ -206,7 +206,11 @@ Now we must join Client-1 to your domain "ericsdomain.com"
  Setup Remote Desktop for Non-Admin Users in Client-1 
 </p>
 
-- 
+- Log into Client-1 as mydomain.com\jane_admin and open system properties
+- Click “Remote Desktop”
+- Allow “domain users” access to remote desktop
+- Now log into Client-1 as a normal, non-administrative user now
+
 
 
 
@@ -214,14 +218,33 @@ Now we must join Client-1 to your domain "ericsdomain.com"
 ![Screen Shot 2024-04-07 at 11 53 19 AM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/dbb986c0-8e8b-42d6-91bf-818bd85adb85)
 ![Screen Shot 2024-04-07 at 11 53 48 AM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/607121e9-a54f-4e94-bc4c-c520fd8678b5)
 ![Screen Shot 2024-04-07 at 11 54 05 AM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/d8a235da-a1e1-4dad-b4eb-982284d65a2f)
-![Screen Shot 2024-04-07 at 1 03 46 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/92bacacd-f11b-4901-b71c-d35dd594aecd)
-![Screen Shot 2024-04-07 at 1 04 36 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/0c8a6d79-1161-4bd2-a034-dfc869c3762e)
-![Screen Shot 2024-04-07 at 1 08 35 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/2c075ae4-5b6f-4850-b94f-5c658e5995ff)
-![Screen Shot 2024-04-07 at 1 17 52 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/a70465da-3174-4572-baf8-bef1dedc2b9e)
+
 <br />
 
 <p>
-Create a bunch of additional users and attempt to log into client-1 with one of the users  
+Now as an Admin let's create various folders, users, etc and understand how Active Directory works and it's use for helpdesk. Here we show case the folders created and viewing them as a normal user on Client-1
+</p>
+
+- On VM-DC-1, on the C:\ drive, create 4 folders: “read-access”, “write-access”, “no-access”, “Accounting Dept”
+- Set the following permissions (share the folder) for the “Domain Users” group:
+- Folder: “read-access”, Group: “Domain Users”, Permission: “Read”
+- Folder: “write-access”,  Group: “Domain Users”, Permissions: “Read/Write”
+- Folder: “no-access”, Group: “Domain Admins”, “Permissions: “Read/Write”
+- On VM-DC-1 AD Users & Computers right click "yourdomain.com" create a security group named "Accounting" (we'll add a user to this group later)
+
+
+![Screen Shot 2024-04-07 at 1 03 46 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/92bacacd-f11b-4901-b71c-d35dd594aecd)
+![Screen Shot 2024-04-07 at 1 04 36 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/0c8a6d79-1161-4bd2-a034-dfc869c3762e)
+![Screen Shot 2024-04-07 at 1 08 35 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/2c075ae4-5b6f-4850-b94f-5c658e5995ff)
+![Screen Shot 2024-04-07 at 1 18 36 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/ba9e37bc-f5e4-4612-a7f1-d1cdbcad6681)
+![Screen Shot 2024-04-07 at 1 17 52 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/a70465da-3174-4572-baf8-bef1dedc2b9e)
+
+<br />
+
+
+
+<p>
+Now let's create a bunch of fake additional users and add them to the "Employees" folder utilizing a code which generates random names that we can run on VM-DC-1 Powershell
 </p>
 
 - 
@@ -235,16 +258,6 @@ Create a bunch of additional users and attempt to log into client-1 with one of 
 ![Screen Shot 2024-04-07 at 1 21 17 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/ffe564c2-a2c4-437a-b488-b24477b5667a)
 
 
-
-
-
-
-
-
-
-
-
-![Screen Shot 2024-04-07 at 1 18 36 PM](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/ba9e37bc-f5e4-4612-a7f1-d1cdbcad6681)
 
 
 
