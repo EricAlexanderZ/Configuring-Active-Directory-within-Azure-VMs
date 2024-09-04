@@ -25,6 +25,16 @@ This tutorial demonstrates how to setup a virtual environment to deploy Active D
 -  Laptop/DeskTop with RDP capability 
 -  HighSpeed WIFI
 
+<h2>Deployment and Configuration Steps Overview</h2>
+
+<p>
+</p>
+<p>
+In this lab we will create two VMs in the same VNET. One will be a Domain Controller, the other will be a Client machine. We will change the DC to a static IP because its offering Active Directory services to the client machine. Client machine will be joined to the domain. We will control the DNS settings on the client machine, the client machine will use the DC as its DNS server. 
+</p>
+<br />
+
+![azure virtual network overview](https://github.com/user-attachments/assets/b3f37eb9-76e0-4f79-a34c-c54bb9c22958)
 
 
 <h2>Configuring Active Directory Steps</h2>
