@@ -1,9 +1,8 @@
 <p align="center">
   
 ![Active Directory](https://github.com/EricAlexanderZ/Configuring-Active-Directory-within-Azure-VMs/assets/99912710/ca4cbff8-119d-472c-8bd9-25e852f4153a)
-</p>
 
-<h1>Configuring Active Directory within Azure Virtual Machines</h1>
+<h1>On-premises Active Directory Deployed in the Cloud (Azure)</h1>
 This tutorial demonstrates how to setup a virtual environment to deploy Active Directory
 <br />
 
