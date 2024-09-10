@@ -66,7 +66,7 @@ In this lab we will create two VMs in the same VNET. One will be a Domain Contro
 
 
 <p>
-Now let's test conectivity and between Client and Domain Controller
+Now let's test conectivity between the Domain Controller and the Client
 </p>
 
 - Login to Domain Controller with Remote Desktop and enable ICMPv4 in the local Windows Defender Firewall 
