@@ -17,7 +17,6 @@ This tutorial demonstrates how to setup a virtual environment to deploy Active D
 
 - Windows 10</b> (21H2)
 - Windows Server 2022
-- MacOS
 
 <h2>List of Prerequisites</h2>
 
