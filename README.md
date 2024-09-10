@@ -20,9 +20,9 @@ This tutorial demonstrates how to setup a virtual environment to deploy Active D
 
 <h2>List of Prerequisites</h2>
 
+-  Internet
 -  Microsoft Azure Account
--  Laptop/DeskTop with RDP capability 
--  HighSpeed WIFI
+-  Computer with RDP capability
 
 <h2>Deployment and Configuration Steps Overview</h2>
 
